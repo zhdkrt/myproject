@@ -18,3 +18,7 @@ Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('co
 
 Route::get('/categories',[CategoryController::class, 'index'])->name('categoriesIndex');
 Route::get('categories/{category}',[CategoryController::class, 'show'])->name('categoriesShow');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

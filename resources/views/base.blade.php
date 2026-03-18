@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -29,6 +29,9 @@
                     >
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    @if(auth()->check())
+                        <span class='text-light'>Здравствуйте, {{auth()->user()->name }}</span>
+                    @endif
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
@@ -38,10 +41,16 @@
                                 <a class="nav-link" href="{{route('companiesIndex')}}">Компании</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">О нас</a>
+                                <a class="btn btn-primary" href="{{route('login')}}">Вход</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Контакты</a>
+                                <a class="btn btn-primary" href="{{route('register')}}">Регистрация</a>
+                            </li>
+                            <li>
+                                <form action="{{route('logout')}}" method="POST">
+                                    @csrf
+                                    <input type='submit' value='Выйти' class="btn btn-primary">
+                                </form>
                             </li>
                         </ul>
                     </div>

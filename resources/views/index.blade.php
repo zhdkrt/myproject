@@ -34,7 +34,7 @@
                                 <p class="mb-1">
                                     <strong>Зарплата:</strong>
                                     @if ($vacancy->salary_min && $vacancy->salary_max)
-                                        {{ $vacancy->salary_min }}–{{ $vacancy->salary_max }} €
+                                        {{ $vacancy->salary_min }} – {{ $vacancy->salary_max }} BYN
                                     @elseif ($vacancy->salary_min)
                                         от {{ $vacancy->salary_min }} BYN
                                     @else
