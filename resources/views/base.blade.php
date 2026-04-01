@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@yield('title', 'WorkWork')</title>
+        @livewireStyles
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -33,24 +34,29 @@
                         <span class='text-light'>Здравствуйте, {{auth()->user()->name }}</span>
                     @endif
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
+                        <ul class="navbar-nav ms-auto flex gap-1">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('categoriesIndex')}}">Категории</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('companiesIndex')}}">Компании</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="btn btn-primary" href="{{route('login')}}">Вход</a>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-primary" href="{{route('register')}}">Регистрация</a>
-                            </li>
+                            </li> -->
+                            @if(auth()->check())
                             <li>
                                 <form action="{{route('logout')}}" method="POST">
                                     @csrf
                                     <input type='submit' value='Выйти' class="btn btn-primary">
                                 </form>
+                            </li>
+                            @endif
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{{route('cabinet.index')}}">Кабинет</a>
                             </li>
                         </ul>
                     </div>
@@ -63,5 +69,6 @@
         <footer class="bg-dark text-white mt-auto">
             <div class="container py-3 text-center">ZHDK</div>
         </footer>
+        @livewireScripts
     </body>
 </html>

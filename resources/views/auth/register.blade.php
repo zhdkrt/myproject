@@ -120,7 +120,7 @@
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="role" id="role_company"
-                                        value="company" {{ old('role') == 'company' ? 'checked' : '' }}>
+                                        value="employer" {{ old('role') == 'employer' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="role_company">
                                         Компания
                                     </label>

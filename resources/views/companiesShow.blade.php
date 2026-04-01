@@ -14,11 +14,11 @@
 
     <h4>Вакансии компании</h4>
 
-    @if($company->vacancies->isEmpty())
+    @if($vacancies->isEmpty())
         <p class="mt-2">У этой компании пока нет опубликованных вакансий.</p>
     @else
         <div class="row mt-3">
-            @foreach($company->vacancies as $vacancy)
+            @foreach($vacancies as $vacancy)
                 <div class="col-md-6 mb-3">
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column">
