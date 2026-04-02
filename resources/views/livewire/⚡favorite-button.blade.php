@@ -41,7 +41,6 @@ new class extends Component
 ?>
 
 <div>
-    {{-- Be present above all else. - Naval Ravikant --}}
     <button wire:click="toggle" class="btn {{ $isFavorited ? 'btn-warning' : 'btn-outline-warning' }}">
         {{ $isFavorited ? 'В избранном' : 'В избранное' }}
     </button>

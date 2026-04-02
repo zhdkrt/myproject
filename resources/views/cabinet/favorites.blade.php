@@ -18,10 +18,7 @@
                         </h5>
                         <p class="text-muted mb-0">{{ $fav->vacancy->company->name }}</p>
                     </div>
-                    <livewire:favorite-button 
-                        :vacancyId="$fav->vacancy_id" 
-                        :key="$fav->vacancy_id" 
-                    />
+                    @livewire('favorite-button',['vacancyId'=>$fav->vacancy_id, 'key'=>$fav->vacancy_id])
                 </div>
             </div>
         @endforeach

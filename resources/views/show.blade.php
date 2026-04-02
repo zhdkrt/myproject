@@ -37,7 +37,7 @@
     @endif
 
     @auth
-        <livewire:favorite-button :vacancyId="$vacancy->id" />
+        @livewire('favorite-button', ['vacancyId'=>$vacancy->id])
     @endauth
 
     @if(!empty($vacancy->company) && !empty($vacancy->company->description))
