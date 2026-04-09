@@ -34,11 +34,15 @@ class ResumeController extends Controller
     }
 
     public function edit(Resume $resume){
+        $this->authorize('update', $resume);
+
         $positions = Position::all();
         return view('cabinet.resume.edit', ['resume' => $resume, 'positions' => $positions]);
     }
 
     public function update(Request $request, Resume $resume){
+         $this->authorize('update', $resume);
+
         $request->validate([
             'desired_position_id' => 'required|exists:positions,id',
             'about_me' => 'nullable|string|max:1000',
@@ -53,6 +57,8 @@ class ResumeController extends Controller
     }
 
     public function destroy(Resume $resume){
+        $this->authorize('delete', $resume);
+        
         $resume->delete();
         return redirect()->route('cabinet.resume')->with('success', 'Резюме удалено!');
     }

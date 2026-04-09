@@ -19,11 +19,14 @@
             <a href="{{ route('cabinet.edit') }}" class="btn btn-outline-secondary mt-2">Редактировать профиль</a>
         </div>
 
-        @if($user->role === 'seeker')
-            <a href="{{ route('cabinet.resume') }}" class="btn btn-primary">Моё резюме</a>
-            <a href="{{ route('cabinet.favorites') }}" class="btn btn-secondary">Избранное</a>
+        @if($user->role === 'seeker' || $user->role === 'jobseeker')
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="{{ route('cabinet.resume') }}" class="btn btn-primary">Моё резюме</a>
+                <a href="{{ route('cabinet.favorites') }}" class="btn btn-secondary">Избранное</a>
+                <a href="{{ route('cabinet.responses') }}" class="btn btn-outline-primary">Мои отклики</a>
+            </div>
         @elseif($user->role === 'employer')
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2 flex-wrap">
                 <a href="{{ route('cabinet.company.edit') }}" class="btn btn-outline-primary">
                     Профиль компании
                 </a>

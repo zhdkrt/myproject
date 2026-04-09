@@ -31,8 +31,18 @@
                         <span class="badge bg-{{ $vacancy->status === 'active' ? 'success' : 'secondary' }} mb-2">
                             {{ $vacancy->status }}
                         </span>
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('cabinet.vacancies.edit', $vacancy->id) }}" class="btn btn-outline-primary btn-sm">Редактировать</a>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <a href="{{ route('cabinet.vacancies.edit', $vacancy->id) }}" 
+                               class="btn btn-outline-primary btn-sm">Редактировать</a>
+
+                            <a href="{{ route('cabinet.vacancies.responses', $vacancy->id) }}" 
+                               class="btn btn-outline-info btn-sm">
+                                Отклики
+                                @if($vacancy->responses_count > 0)
+                                    <span class="badge bg-info text-dark">{{ $vacancy->responses_count }}</span>
+                                @endif
+                            </a>
+
                             <form action="{{ route('cabinet.vacancies.destroy', $vacancy->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

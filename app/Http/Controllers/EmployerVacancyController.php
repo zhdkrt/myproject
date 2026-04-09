@@ -63,6 +63,8 @@ class EmployerVacancyController extends Controller
 
     public function edit(Vacancy $vacancy)
     {
+        $this->authorize('update', $vacancy);
+
         $positions  = Position::all();
         $categories = Category::all();
         return view('cabinet.vacancies.edit', compact('vacancy', 'positions', 'categories'));
@@ -70,6 +72,8 @@ class EmployerVacancyController extends Controller
 
     public function update(Request $request, Vacancy $vacancy)
     {
+        $this->authorize('update', $vacancy);
+
         $request->validate([
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -93,6 +97,8 @@ class EmployerVacancyController extends Controller
 
     public function destroy(Vacancy $vacancy)
     {
+        $this->authorize('delete', $vacancy);
+
         $vacancy->delete();
         return redirect()->route('cabinet.vacancies')->with('success', 'Вакансия удалена');
     }

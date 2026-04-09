@@ -41,12 +41,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('companiesIndex')}}">Компании</a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="btn btn-primary" href="{{route('login')}}">Вход</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-primary" href="{{route('register')}}">Регистрация</a>
-                            </li> -->
                             @if(auth()->check())
                             <li>
                                 <form action="{{route('logout')}}" method="POST">
@@ -56,7 +50,11 @@
                             </li>
                             @endif
                             <li class="nav-item">
-                                <a class="btn btn-primary" href="{{route('cabinet.index')}}">Кабинет</a>
+                                @if(auth()->check() && auth()->user()->role === 'admin')
+                                    <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">Админ панель</a>
+                                @else
+                                    <a class="btn btn-primary" href="{{ route('cabinet.index') }}">Кабинет</a>
+                                @endif
                             </li>
                         </ul>
                     </div>

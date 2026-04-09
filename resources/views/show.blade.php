@@ -35,10 +35,36 @@
             @endif
         </p>
     @endif
+    <div class="d-flex">
+        @auth
+            
+            @livewire('favorite-button', ['vacancyId' => $vacancy->id])
 
-    @auth
-        @livewire('favorite-button', ['vacancyId'=>$vacancy->id])
-    @endauth
+            @if(in_array(auth()->user()->role, ['seeker', 'jobseeker']))
+                @php
+                    $alreadyApplied = \App\Models\Response::where('user_id', auth()->id())
+                        ->where('vacancy_id', $vacancy->id)
+                        ->exists();
+                @endphp
+
+                @if($alreadyApplied)
+                    <button class="btn btn-secondary ms-2" disabled>Вы уже откликнулись</button>
+                @else
+                    <form method="POST" action="{{ route('responses.store', $vacancy) }}" class="d-inline ms-2">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Откликнуться</button>
+                    </form>
+                @endif
+            @endif
+            
+        @endauth
+    </div>
+    @if(session('success'))
+        <div class="alert alert-success mt-3">{{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger mt-3">{{ session('error') }}</div>
+    @endif
 
     @if(!empty($vacancy->company) && !empty($vacancy->company->description))
         <hr>
